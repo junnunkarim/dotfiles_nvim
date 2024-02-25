@@ -75,7 +75,7 @@ lspconfig.pyright.setup {
     python = {
       analysis = {
         autoSearchPaths = true,
-        useLibraryCodeForTypes = false,
+        useLibraryCodeForTypes = true,
         diagnosticMode = 'openFilesOnly',
       },
     },
@@ -85,6 +85,34 @@ lspconfig.pyright.setup {
         lsp_util.path.dirname(fname)
   end
 }
+
+-- lspconfig.pylyzer.setup {
+--   on_attach = on_attach,
+--   capabilities = capabilities,
+--   flags = lsp_flags,
+--   settings = {
+--     python = {
+--       checkOnType = false,
+--       diagnostics = true,
+--       inlayHints = true,
+--       smartCompletion = true
+--     },
+--   },
+--   root_dir = function(fname)
+--     return lsp_util.root_pattern(".git", "setup.py", "setup.cfg", "pyproject.toml", "requirements.txt")(fname) or
+--         lsp_util.path.dirname(fname)
+--   end
+-- }
+
+-- lspconfig.pylsp.setup {
+--   on_attach = on_attach,
+--   capabilities = capabilities,
+--   flags = lsp_flags,
+--   root_dir = function(fname)
+--     return lsp_util.root_pattern(".git", "setup.py", "setup.cfg", "pyproject.toml", "requirements.txt")(fname) or
+--         lsp_util.path.dirname(fname)
+--   end
+-- }
 
 lspconfig.lua_ls.setup {
   on_attach = on_attach,

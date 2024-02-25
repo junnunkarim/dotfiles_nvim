@@ -7,6 +7,6 @@ end
 
 --require("core.highlight_group")
 
-local color = "base16-rose-pine"
+local color = "base16-gruvbox-dark-medium"
 
 change_colorscheme(color)

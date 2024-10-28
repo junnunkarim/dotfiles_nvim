@@ -1,2 +1,5 @@
 require("core")
-require("plugin")
+
+if not vim.g.vscode then
+  require("plugin")
+end

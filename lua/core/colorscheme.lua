@@ -1,5 +1,15 @@
 --require("core.highlight_group")
 
+require("base16-colorscheme").with_config({
+  telescope = false,
+  indentblankline = true,
+  notify = true,
+  ts_rainbow = true,
+  cmp = false,
+  illuminate = true,
+  dapui = true,
+})
+
 function change_colorscheme(colorscheme)
   vim.cmd.colorscheme(colorscheme or "nord")
 end

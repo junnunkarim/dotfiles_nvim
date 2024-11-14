@@ -251,7 +251,11 @@ local plugins = {
   --}}
 }
 
-local options = {}
+local options = {
+  ui = {
+    border = "rounded",
+  },
+}
 
 require("lazy").setup(plugins, options)
 

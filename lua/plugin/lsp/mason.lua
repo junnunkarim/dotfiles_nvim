@@ -7,11 +7,14 @@ end
 
 --{{ keymaps
 --
-helper.set_keymap("n", "<leader>sm", "<cmd>Mason<cr>", {noremap = true, silent = true, desc = "Open Mason"})
+helper.set_keymap("n", "<leader>sm", "<cmd>Mason<cr>", { noremap = true, silent = true, desc = "Open Mason" })
 --
 --}}
 
-
-local options = {}
+local options = {
+  ui = {
+    border = "rounded",
+  },
+}
 
 mason.setup(options)

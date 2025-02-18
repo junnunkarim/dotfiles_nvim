@@ -25,6 +25,27 @@ local plugins = {
   "neovim/nvim-lspconfig",
 
   "p00f/clangd_extensions.nvim",
+
+  {
+    "luckasRanarison/tailwind-tools.nvim",
+    name = "tailwind-tools",
+    build = ":UpdateRemotePlugins",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-telescope/telescope.nvim", -- optional
+      "neovim/nvim-lspconfig", -- optional
+    },
+    opts = {}, -- your configuration
+  },
+
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "neovim/nvim-lspconfig",
+    },
+    opts = {},
+  },
   --
   --}}
 
@@ -219,6 +240,12 @@ local plugins = {
     "ziontee113/color-picker.nvim",
     lazy = true,
     cmd = "PickColor",
+  },
+  {
+    "nvzone/typr",
+    dependencies = "nvzone/volt",
+    opts = {},
+    cmd = { "Typr", "TyprStats" },
   },
   -- "karb94/neoscroll.nvim", -- smooth scroll
   --

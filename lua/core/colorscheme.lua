@@ -1,5 +1,4 @@
 --require("core.highlight_group")
-
 require("base16-colorscheme").with_config({
   telescope = false,
   indentblankline = true,
@@ -10,7 +9,7 @@ require("base16-colorscheme").with_config({
   dapui = true,
 })
 
-function change_colorscheme(colorscheme)
+local function change_colorscheme(colorscheme)
   vim.cmd.colorscheme(colorscheme or "nord")
 end
 

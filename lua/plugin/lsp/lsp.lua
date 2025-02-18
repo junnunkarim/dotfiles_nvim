@@ -14,20 +14,23 @@ end
 --{{ helper functions
 --
 
--- local on_attach = function(client, bufnr)
--- vim.api.nvim_set_option_value('omnifunc', 'v:lua.vim.lsp.omnifunc')
--- client.server_capabilities.document_formatting = true
--- end
-
 local on_attach = function(client, bufnr)
-  local function buf_set_keymap(...)
-    vim.api.nvim_buf_set_keymap(bufnr, ...)
-  end
-  local function buf_set_option(...)
-    vim.api.nvim_buf_set_option(bufnr, ...)
-  end
+  if client.name == "svelte" then
+    vim.api.nvim_create_autocmd("BufWritePost", {
+      pattern = { "*.js", "*.ts" },
+      group = vim.api.nvim_create_augroup("svelte_ondidchangetsorjsfile", { clear = true }),
+      callback = function(ctx)
+        -- Here use ctx.match instead of ctx.file
+        client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
+      end,
+    })
+  else
+    local function buf_set_option(...)
+      vim.api.nvim_buf_set_option(bufnr, ...)
+    end
 
-  buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+    buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+  end
 end
 
 local lsp_flags = {
@@ -150,6 +153,11 @@ lspconfig.cssls.setup({
   flags = lsp_flags,
 })
 
+-- lspconfig.phpactor.setup({})
+lspconfig.intelephense.setup({})
+
+-- lspconfig.clangd.setup({})
+
 lspconfig.marksman.setup({
   on_attach = on_attach,
   capabilities = capabilities,
@@ -168,7 +176,18 @@ lspconfig.bashls.setup({
   capabilities = capabilities,
 })
 
-lspconfig.ts_ls.setup({
+-- lspconfig.ts_ls.setup({
+--   on_attach = on_attach,
+--   capabilities = capabilities,
+-- })
+
+lspconfig.svelte.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { "*.js", "*.ts", "svelte" },
+})
+
+lspconfig.hyprls.setup({
   on_attach = on_attach,
   capabilities = capabilities,
 })

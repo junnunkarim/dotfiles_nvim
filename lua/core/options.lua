@@ -76,3 +76,5 @@ if vim.g.neovide then
   vim.g.neovide_padding_right = 10
   vim.g.neovide_padding_left = 10
 end
+
+vim.g.lazyvim_php_lsp = "intelephense"

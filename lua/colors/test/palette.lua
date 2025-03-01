@@ -48,4 +48,3 @@ local colors = {
 }
 
 return colors
-

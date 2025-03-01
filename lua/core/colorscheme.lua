@@ -14,7 +14,7 @@ local function change_colorscheme(colorscheme)
 end
 
 -- local color = "base16-default-dark"
-local color = "matugen"
+local color = "base16-nord"
 
 if color == "matugen" then
   local colors = require("colors.matugen")

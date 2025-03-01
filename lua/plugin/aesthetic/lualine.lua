@@ -3,40 +3,32 @@ if not available then
   return
 end
 
---    
-
 local options = {
   options = {
     icons_enabled = true,
     theme = "auto",
-    component_separators = { left = "", right = "" },
-    section_separators = { left = "", right = "" },
-    disabled_filetypes = {
-      statusline = {
-        "neo-tree",
-        "nvim-tree",
-      },
-      winbar = {},
+    section_separators = { left = "", right = "" },
+    component_separators = { left = "", right = "" },
+    ignore_focus = {
+      "neo-tree",
+      "nvim-tree",
     },
-    ignore_focus = {},
-    always_divide_middle = true,
-    globalstatus = false,
+    -- always_divide_middle = true,
+    globalstatus = true,
     refresh = {
-      statusline = 1000,
-      tabline = 1000,
-      winbar = 1000,
+      -- statusline = 100,
+      tabline = 100,
+      winbar = 100,
     },
   },
-  sections = {
-    lualine_a = {
-      {
-        "mode",
-        separator = { left = "", right = "" },
-      },
-    },
-    lualine_b = {
+  ----------------------------------------------------
+  winbar = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {
       {
         "diagnostics",
+        separator = { left = "", right = "" },
         sources = { "nvim_lsp" },
         sections = { "error", "warn", "info", "hint" },
         symbols = {
@@ -55,65 +47,134 @@ local options = {
         update_in_insert = true,
       },
     },
-    lualine_c = {},
-    lualine_x = {
-      { "encoding", separator = { left = "", right = "" } },
-      { "filetype", separator = { left = "", right = "" } },
-    },
+    lualine_d = {},
+    lualine_x = {},
     lualine_y = {
-      { "progress", separator = { left = "", right = "" } },
+      {
+        "diff",
+        separator = { left = "", right = "" },
+      },
     },
     lualine_z = {
-      { "location", separator = { left = "", right = "" } },
+      {
+        "filename",
+        path = 1,
+        separator = { left = "", right = "" },
+        file_status = true,
+        symbols = {
+          modified = "[]",
+          readonly = "[]",
+          unnamed = "[no_name]",
+          newfile = "[new]",
+        },
+      },
     },
   },
-  inactive_sections = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = { "filename" },
-    lualine_x = { "location" },
-    lualine_y = {},
-    lualine_z = {},
-  },
-  tabline = {
+  ----------------------------------------------------
+  inactive_winbar = {
     lualine_a = {
       {
-        "buffers",
-        --show_filename_only = true,
-        separator = { left = "", right = "" },
-        icons_enabled = false,
+        "diagnostics",
+        separator = { left = "", right = "" },
+        sources = { "nvim_lsp" },
+        sections = { "error", "warn", "info", "hint" },
         symbols = {
-          modified = " ●", -- Text to show when the buffer is modified
-          alternate_file = "", -- Text to show to identify the alternate file
-          directory = "", -- Text to show when the buffer is a directory
+          error = " ",
+          warn = " ",
+          info = "󰋼 ",
+          hint = "󰌵 ",
         },
+        colored = true,
+        diagnostics_color = {
+          error = "DiagnosticError",
+          warn = "DiagnosticWarn",
+          info = "DiagnosticInfo",
+          hint = "DiagnosticHint",
+        },
+        update_in_insert = true,
+      },
+    },
+    lualine_b = {},
+    lualine_c = {},
+    lualine_d = {},
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = {
+      {
+        "filename",
+        path = 1,
+        separator = { left = "", right = "" },
+        file_status = true,
+        symbols = {
+          modified = "[]",
+          readonly = "[]",
+          unnamed = "[no_name]",
+          newfile = "[new]",
+        },
+      },
+    },
+  },
+  ----------------------------------------------------
+  sections = {
+    lualine_a = {
+      {
+        "mode",
+        separator = { left = "", right = "" },
       },
     },
     lualine_b = {
       {
         "branch",
-        separator = { left = "", right = "" },
-      },
-      {
-        "diff",
-        separator = { left = "", right = "" },
+        separator = { left = "", right = "" },
       },
     },
-    lualine_c = {},
-    lualine_x = {},
-    lualine_y = {},
+    lualine_c = {
+      {
+        "buffers",
+        separator = { left = "", right = "" },
+        icons_enabled = false,
+        mode = 0,
+        show_modified_status = true,
+        symbols = {
+          -- text to show when the buffer is modified
+          modified = " []",
+          -- text to show to identify the alternate file
+          alternate_file = "",
+          -- text to show when the buffer is a directory
+          directory = "",
+        },
+      },
+    },
+    lualine_d = {},
+    lualine_x = {
+      { "searchcount" },
+    },
+    lualine_y = {
+      { "location", separator = { left = "", right = "" } },
+    },
     lualine_z = {
-      { "tabs", separator = { left = "", right = "" } },
+      {
+        "tabs",
+        separator = { left = "", right = "" },
+        padding = 1,
+        use_mode_colors = true,
+        symbols = {
+          modified = " []", -- Text to show when the file is modified.
+        },
+      },
     },
   },
-  winbar = {},
-  inactive_winbar = {},
+  ----------------------------------------------------
+  inactive_sections = {},
+  tabline = {},
+  ----------------------------------------------------
   extensions = {
-    "nvim-tree",
+    "lazy",
+    "man",
+    "mason",
     "neo-tree",
     "toggleterm",
     "quickfix",
-    "lazy",
   },
 }
 

@@ -1,80 +1,185 @@
--- Neovim options
+-- neovim options
 
-local options = {
-  backup = false, -- creates a backup file
-  background = "dark",
-  clipboard = "unnamedplus", -- allows neovim to access the system clipboard
-  cmdheight = 1, -- more space in the neovim command line for displaying messages
-  --completeopt = { "menuone", "noselect" }, -- mostly just for cmp
-  conceallevel = 0, -- so that `` is visible in markdown files
-  fileencoding = "utf-8", -- the encoding written to a file
-  hlsearch = true, -- highlight all matches on previous search pattern
-  incsearch = true, -- highlight all matches on previous search pattern
-  ignorecase = true, -- ignore case in search patterns
-  mouse = "a", -- allow the mouse to be used in neovim
-  pumheight = 10, -- pop up menu height
-  showmode = false, -- disables the -- INSERT -- line
-  showtabline = 2, -- always show tabs
-  --smartcase = true, -- smart case
-  smartindent = true, -- make indenting smarter again
-  splitbelow = true, -- force all horizontal splits to go below current window
-  splitright = true, -- force all vertical splits to go to the right of current window
-  swapfile = false, -- creates a swapfile
-  termguicolors = true, -- set term gui colors (most terminals support this)
-  timeoutlen = 100, -- time to wait for a mapped sequence to complete (in milliseconds)
-  undofile = true, -- enable persistent undo
-  updatetime = 50, -- faster completion (4000ms default)
-  writebackup = true, -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
-  expandtab = true, -- convert tabs to spaces
-  shiftwidth = 2, -- the number of spaces inserted for each indentation
-  tabstop = 2, -- insert 2 spaces for a tab
-  cursorline = true, -- highlight the current line
-  cursorcolumn = false, -- highlight the current line
-  colorcolumn = "80",
-  number = true, -- set numbered lines
-  relativenumber = true, -- set relative numbered lines
-  numberwidth = 2, -- set number column width to 2 {default 4}
-
-  iskeyword = "|,/,\\,(,),{,},[,],+,*,:,;,',\",_,=,-,>,<,.,,", -- sets word separators
-
-  signcolumn = "yes", -- always show the sign column, otherwise it would shift the text each time
-  wrap = true, -- display lines as one long line
-  linebreak = true, -- companion to wrap, don't split words
-  --scrolloff = 10, -- minimal number of screen lines to keep above and below the cursor
-  --sidescrolloff = 10, -- minimal number of screen columns either side of cursor if wrap is `false`
-  --guifont = "monospace:h17", -- the font used in graphical neovim applications
-  --whichwrap = "bs<>[]hl", -- which "horizontal" keys are allowed to travel to prev/next line
+-----------------------------------------------------------
+-- file & backup settings
+-----------------------------------------------------------
+local file_options = {
+  -- disable creation of backup files
+  backup = false,
+  -- disable swap files
+  swapfile = false,
+  -- enable persistent undo
+  undofile = true,
+  -- prevent editing if the file is being changed by another program
+  writebackup = true,
+  -- file encoding used when writing files
+  fileencoding = "utf-8",
 }
 
+-----------------------------------------------------------
+-- user interface settings
+-----------------------------------------------------------
+local ui_options = {
+  -- use dark background colors
+  background = "dark",
+  -- enable 24-bit rgb color in the terminal
+  termguicolors = true,
+  -- height of the command line for messages
+  cmdheight = 1,
+  -- enable mouse support in all modes
+  mouse = "a",
+  -- maximum number of items in the popup menu
+  pumheight = 10,
+  -- don't display the mode (e.g., -- insert --)
+  showmode = false,
+  -- disable the tabline
+  showtabline = 0,
+  -- use a global statusline
+  -- not needed for top statusline with lualine
+  laststatus = 3,
+  -- always show the sign column to avoid text shifting
+  signcolumn = "yes",
+  -- this option helps to avoid all the |hit-enter| prompts caused by
+  -- fil messages, for example with CTRL-G, and to avoid some other messages.
+  shortmess = "ltToOCFsS",
+}
+
+-----------------------------------------------------------
+-- search & highlight settings
+-----------------------------------------------------------
+local search_options = {
+  -- highlight all matches of previous search pattern
+  hlsearch = true,
+  -- show match while typing search
+  incsearch = true,
+  -- ignore case when searching
+  ignorecase = true,
+  -- enable smart case search (optional; uncomment if needed)
+  -- smartcase  = true,
+}
+
+-----------------------------------------------------------
+-- indentation & tab settings
+-----------------------------------------------------------
+local indent_options = {
+  -- enable smart indentation
+  smartindent = true,
+  -- convert tabs to spaces
+  expandtab = true,
+  -- number of spaces to use for each step of (auto)indent
+  shiftwidth = 2,
+  -- number of spaces that a <tab> counts for
+  tabstop = 2,
+}
+
+-----------------------------------------------------------
+-- window splitting settings
+-----------------------------------------------------------
+local split_options = {
+  -- force horizontal splits to open below current window
+  splitbelow = true,
+  -- force vertical splits to open to the right of current window
+  splitright = true,
+}
+
+-----------------------------------------------------------
+-- miscellaneous settings
+-----------------------------------------------------------
+local misc_options = {
+  -- reveal markdown syntax (e.g., backticks remain visible)
+  conceallevel = 0,
+  -- time in milliseconds to wait for a mapped sequence to complete
+  timeoutlen = 100,
+  -- faster completion by reducing the time to trigger events
+  updatetime = 50,
+  -- use the system clipboard for copy/paste operations
+  clipboard = "unnamedplus",
+  -- enable line wrapping
+  wrap = true,
+  -- break lines at convenient points (do not break words)
+  linebreak = true,
+  -- highlight column 80 (helpful as a guide)
+  colorcolumn = "80",
+  -- enable absolute line numbers
+  number = true,
+  -- enable relative line numbers
+  relativenumber = true,
+  -- set the width of the number column
+  numberwidth = 2,
+}
+
+-----------------------------------------------------------
+-- merge all option groups into one table
+-----------------------------------------------------------
+local options = {}
+
+for _, group in ipairs({ file_options, ui_options, search_options, indent_options, split_options, misc_options }) do
+  for option, value in pairs(group) do
+    options[option] = value
+  end
+end
+
+-- apply all options
 for option, value in pairs(options) do
   vim.opt[option] = value
 end
 
--- sets word separators
--- vim.opt.iskeyword:append "-,=,_"
+-----------------------------------------------------------
+-- additional settings outside the options table
+-----------------------------------------------------------
 
---vim.opt.shortmess:append "c" -- don't give |ins-completion-menu| messages
---vim.opt.formatoptions:remove({ "c", "r", "o" }) -- don't insert the current comment leader automatically for auto-wrapping comments using 'textwidth', hitting <Enter> in insert mode, or hitting 'o' or 'O' in normal mode.
---vim.opt.runtimepath:remove("/usr/share/vim/vimfiles") -- separate vim plugins from neovim in case vim still in use
-
--- remove the '~' symbol from empty lines
+-- remove the '~' symbols from empty lines
 vim.opt.fillchars:append({ eob = " " })
+-- define characters that form part of a word
+-- 48-57 -> correspond to the digits 0-9
+-- test on this: somethnig ) is ( going { on } = i + guess ' is " not - it
+-- vim.opt.iskeyword.append("_,-,+,=,<,>,(,),{,},[,],\",',:,;,\\,/,#,%,&,*,48-57")
+vim.opt.iskeyword:append({
+  "_",
+  "-",
+  "+",
+  "=",
+  "~",
+  "<",
+  ">",
+  "(",
+  ")",
+  "{",
+  "}",
+  "[",
+  "]",
+  '"',
+  "'",
+  ":",
+  ";",
+  "\\",
+  "/",
+  "#",
+  "%",
+  "&",
+  "*",
+})
 
---{{ icons for diagnostic errors
-vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticSignError" })
-vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticSignWarn" })
-vim.fn.sign_define("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticSignInfo" })
-vim.fn.sign_define("DiagnosticSignHint", { text = "󰌵", texthl = "DiagnosticSignHint" })
---}}
-
--- Neovide settings
+-----------------------------------------------------------
+-- neovide specific settings
+-----------------------------------------------------------
 if vim.g.neovide then
-  vim.o.guifont = "Iosevka Nerd Font Mono:h14" -- text below applies for VimScript
+  -- set gui font for neovide
+  vim.o.guifont = "Iosevka Nerd Font Mono:h18"
+  -- neovide scale factor
   vim.g.neovide_scale_factor = 1.0
+  -- padding at the top
   vim.g.neovide_padding_top = 10
-  -- vim.g.neovide_padding_bottom = 10
+  -- padding at the bottom (optional)
+  vim.g.neovide_padding_bottom = 0
+  -- padding on the right
   vim.g.neovide_padding_right = 10
+  -- padding on the left
   vim.g.neovide_padding_left = 10
 end
 
+-----------------------------------------------------------
+-- additional global settings
+-----------------------------------------------------------
+-- set php lsp to intelephense for lazyvim
 vim.g.lazyvim_php_lsp = "intelephense"

@@ -1,5 +1,6 @@
 local helper = require("core.helper")
 
+-- set `spacebar` as the leader
 vim.g.mapleader = " "
 
 local opts = {
@@ -20,12 +21,29 @@ helper.set_keymap("i", "<a-d>", "<esc><C-d>zzi", opts)
 helper.set_keymap("n", "<a-u>", "<C-u>zz", opts)
 helper.set_keymap("i", "<a-u>", "<esc><C-u>zzi", opts)
 
-helper.set_keymap("n", "<leader>nc", "<cmd>noh<cr>", { noremap = true, silent = true, desc = "Remove search highlights" })
+helper.set_keymap(
+  "n",
+  "<leader>nc",
+  "<cmd>noh<cr>",
+  { noremap = true, silent = true, desc = "Remove search highlights" }
+)
 
-helper.set_keymap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>",
-  { noremap = true, silent = true, desc = "Toggle LSP code-action" })
-helper.set_keymap("n", "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<cr>",
-  { noremap = true, silent = true, desc = "Rename selected function" })
+helper.set_keymap(
+  "n",
+  "<leader>ca",
+  "<cmd>lua vim.lsp.buf.code_action()<cr>",
+  { noremap = true, silent = true, desc = "Toggle LSP code-action" }
+)
+helper.set_keymap(
+  "n",
+  "<leader>cr",
+  "<cmd>lua vim.lsp.buf.rename()<cr>",
+  { noremap = true, silent = true, desc = "Rename selected function" }
+)
 
-helper.set_keymap("n", "<leader>sr", "<cmd>source ~/.config/nvim/lua/core/colorscheme.lua<cr>",
-  { noremap = true, silent = true, desc = "Reload colorscheme" })
+helper.set_keymap(
+  "n",
+  "<leader>sr",
+  "<cmd>source ~/.config/nvim/lua/core/colorscheme.lua<cr>",
+  { noremap = true, silent = true, desc = "Reload colorscheme" }
+)

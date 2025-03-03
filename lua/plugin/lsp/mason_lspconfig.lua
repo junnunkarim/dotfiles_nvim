@@ -6,17 +6,35 @@ end
 
 local options = {
   ensure_installed = {
-    "bash-language-server",
-    "clangd",
-    "css-lsp",
-    "html-lsp",
-    "ltex-ls",
-    "lua-language-server",
-    "marksman",
-    "pyright",
-    "rust-analyzer",
-    "texlab",
+    --[ lsp
+    "bashls",
+    -- "clangd",
+    "cssls",
+    "denols",
+    "html",
+    "hyprls",
+    -- "ltex",
+    "lua_ls",
+    -- "intelephense",
+    -- "marksman",
+    -- "pico8-ls",
+    "rust_analyzer",
+    "svelte",
+    "tailwindcss",
+    "taplo",
+    -- "texlab",
+    "ts_ls",
+    --
+    --]
+
+    --[ formatter
+    --
+    "ruff",
+    -- "shfmt",
+    -- "stylua",
+    --
+    --]
   },
 }
 
-mason_lspconfig.setup()
+mason_lspconfig.setup(options)

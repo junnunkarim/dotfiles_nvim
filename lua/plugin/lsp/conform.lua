@@ -30,10 +30,8 @@ local options = {
   formatters_by_ft = {
     -- c = { "clang-format" },
     -- cpp = { "clang-format" },
-    css = { "prettier" },
-    graphql = { "prettier" },
-    html = { "prettier" },
-    --htmldjango = { "prettier" },
+    css = { "deno_fmt" },
+    html = { "deno_fmt" },
     java = { "clang-format" },
     javascript = { "deno_fmt" },
     javascriptreact = { "deno_fmt" },
@@ -41,7 +39,7 @@ local options = {
     lua = { "stylua" },
     markdown = { "deno_fmt" },
     -- php = { "pretty-php" },
-    php = { "php-cs-fixer" },
+    -- php = { "php-cs-fixer" },
     python = function(bufnr)
       if conform.get_formatter_info("ruff_format", bufnr).available then
         return { "ruff_format" }
@@ -49,12 +47,12 @@ local options = {
         return { "isort", "black" }
       end
     end,
-    scss = { "prettier" },
+    scss = { "deno_fmt" },
     toml = { "taplo" },
     typescript = { "deno_fmt" },
     typescriptreact = { "deno_fmt" },
     svelte = { "deno_fmt" },
-    yaml = { "prettier" },
+    yaml = { "deno_fmt" },
   },
 
   -- format_on_save = function(bufnr)

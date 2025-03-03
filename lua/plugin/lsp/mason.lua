@@ -13,10 +13,10 @@ helper.set_keymap("n", "<leader>sm", "<cmd>Mason<cr>", { noremap = true, silent 
 
 local options = {
   ui = {
-    border = "rounded",
+    border = "none",
 
     -- The backdrop opacity. 0 is fully opaque, 100 is fully transparent.
-    backdrop = 0,
+    backdrop = 30,
   },
 }
 

@@ -9,16 +9,22 @@ local options = {
     theme = "auto",
     section_separators = { left = "", right = "" },
     component_separators = { left = "", right = "" },
-    ignore_focus = {
-      "neo-tree",
-      "nvim-tree",
+    disabled_filetypes = {
+      -- statusline = {
+      --   "neo-tree",
+      --   "nvim-tree",
+      -- },
+      winbar = {
+        "neo-tree",
+        "nvim-tree",
+      },
     },
     -- always_divide_middle = true,
     globalstatus = true,
     refresh = {
       -- tabline = 100,
       winbar = 500,
-      statusline = 1000,
+      statusline = 500,
     },
   },
   ----------------------------------------------------
@@ -172,7 +178,7 @@ local options = {
     "lazy",
     "man",
     "mason",
-    "neo-tree",
+    -- "neo-tree",
     "toggleterm",
     "quickfix",
   },

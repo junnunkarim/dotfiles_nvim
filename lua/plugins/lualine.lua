@@ -69,7 +69,8 @@ local options = {
     lualine_z = {
       {
         "filename",
-        path = 1,
+        -- 4: filename and parent dir, with tilde as the home directory
+        path = 4,
         separator = { left = "", right = "" },
         file_status = true,
         symbols = {
@@ -113,7 +114,8 @@ local options = {
     lualine_z = {
       {
         "filename",
-        path = 1,
+        -- 4: filename and parent dir, with tilde as the home directory
+        path = 4,
         separator = { left = "", right = "" },
         file_status = true,
         symbols = {

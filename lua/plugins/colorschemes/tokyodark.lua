@@ -1,4 +1,5 @@
 return {
-	"tiagovla/tokyodark.nvim",
-	lazy = true,
+  "tiagovla/tokyodark.nvim",
+  lazy = false,
+  priority = 1000,
 }

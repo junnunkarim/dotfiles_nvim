@@ -1,4 +1,5 @@
 return {
-	"Mofiqul/dracula.nvim",
-	lazy = true,
+  "Mofiqul/dracula.nvim",
+  lazy = false,
+  priority = 1000,
 }

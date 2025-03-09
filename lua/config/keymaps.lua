@@ -18,16 +18,33 @@ util.set_keymap("n", "<a-u>", "<C-u>zz")
 util.set_keymap("i", "<a-u>", "<esc><C-u>zzi")
 
 -- lsp
-util.set_keymap("n", "<leader>lc", "<cmd>lua vim.lsp.buf.code_action()<cr>", { desc = "Toggle LSP code-action" })
+util.set_keymap(
+  "n",
+  "<leader>lc",
+  "<cmd>lua vim.lsp.buf.code_action()<cr>",
+  { desc = "Toggle LSP code-action" }
+)
 
-util.set_keymap("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", { desc = "Rename selected function" })
+util.set_keymap(
+  "n",
+  "<leader>lh",
+  "<cmd>lua vim.lsp.buf.hover() <cr>",
+  { desc = "Toggle LSP hover" }
+)
+
+util.set_keymap(
+  "n",
+  "<leader>lr",
+  "<cmd>lua vim.lsp.buf.rename()<cr>",
+  { desc = "Rename selected function" }
+)
 
 -- ui
 util.set_keymap(
-	"n",
-	"<leader>ur",
-	"<cmd>source ~/.config/nvim/lua/config/colorscheme.lua<cr>",
-	{ desc = "Reload colorscheme" }
+  "n",
+  "<leader>ur",
+  "<cmd>source ~/.config/nvim/lua/config/colorscheme.lua<cr>",
+  { desc = "Reload colorscheme" }
 )
 
 -- misc

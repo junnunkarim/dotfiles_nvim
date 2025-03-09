@@ -1,4 +1,5 @@
 return {
-	"gbprod/nord.nvim",
-	lazy = true,
+  "gbprod/nord.nvim",
+  lazy = false,
+  priority = 1000,
 }

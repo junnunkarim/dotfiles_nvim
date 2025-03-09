@@ -1,4 +1,5 @@
 return {
-	"olimorris/onedarkpro.nvim",
-	lazy = true,
+  "olimorris/onedarkpro.nvim",
+  lazy = false,
+  priority = 1000,
 }

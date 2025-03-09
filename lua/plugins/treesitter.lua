@@ -38,6 +38,8 @@ local options = {
 
 return {
   "nvim-treesitter/nvim-treesitter",
+  lazy = true,
+  event = { "BufReadPost", "BufWritePost", "BufNewFile" },
   build = ":TSUpdate",
   config = function()
     local configs = require("nvim-treesitter.configs")

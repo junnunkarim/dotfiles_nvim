@@ -1,6 +1,6 @@
 return {
   "rose-pine/neovim",
   name = "rose_pine",
-  lazy = false,
-  priority = 1000,
+  lazy = true,
+  -- priority = 1000,
 }

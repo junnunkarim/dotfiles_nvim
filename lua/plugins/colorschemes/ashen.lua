@@ -1,6 +1,5 @@
 return {
-  "catppuccin/nvim",
-  name = "catppuccin",
+  "ficcdaf/ashen.nvim",
   lazy = true,
   -- priority = 1000,
 }

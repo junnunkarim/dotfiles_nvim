@@ -1,5 +1,5 @@
 return {
   "alexxGmZ/e-ink.nvim",
-  lazy = false,
-  priority = 1000,
+  lazy = true,
+  -- priority = 1000,
 }

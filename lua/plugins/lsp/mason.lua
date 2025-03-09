@@ -34,6 +34,7 @@ return {
   -- the following order is important
   {
     "williamboman/mason.nvim",
+    cmd = 'Mason',
     config = function()
       require("mason").setup()
 
@@ -43,6 +44,7 @@ return {
   },
   {
     "williamboman/mason-lspconfig.nvim",
+    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       "williamboman/mason.nvim",
     },

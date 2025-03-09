@@ -1,5 +1,5 @@
 return {
   "Shatur/neovim-ayu",
-  lazy = false,
-  priority = 1000,
+  lazy = true,
+  -- priority = 1000,
 }

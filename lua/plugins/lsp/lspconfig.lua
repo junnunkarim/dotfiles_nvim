@@ -98,9 +98,9 @@ return {
     "saghen/blink.cmp",
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
-  },
 
-  -- example using `opts` for defining servers
+  },
+  event = { "BufReadPost", "BufWritePost", "BufNewFile" },
   opts = {
     servers = lsp_configs,
   },

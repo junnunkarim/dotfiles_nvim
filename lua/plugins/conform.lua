@@ -29,5 +29,7 @@ local options = {
 return {
   'stevearc/conform.nvim',
   opts = options,
+  lazy = true,
   event = { "BufReadPre", "BufNewFile" },
+  cmd = "ConformInfo",
 }

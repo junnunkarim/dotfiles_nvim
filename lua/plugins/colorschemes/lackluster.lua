@@ -1,6 +1,5 @@
 return {
-  "catppuccin/nvim",
-  name = "catppuccin",
+  "slugbyte/lackluster.nvim",
   lazy = true,
   -- priority = 1000,
 }
